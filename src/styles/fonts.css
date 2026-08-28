@@ -1,0 +1,38 @@
+@import '@fontsource/be-vietnam-pro/400.css';
+@import '@fontsource/be-vietnam-pro/500.css';
+@import '@fontsource/be-vietnam-pro/600.css';
+@import '@fontsource/be-vietnam-pro/700.css';
+
+:root {
+  font-family: 'Be Vietnam Pro', 'Segoe UI', sans-serif;
+}
+body {
+  font-weight: 400;
+  letter-spacing: normal;
+  font-kerning: normal;
+  font-synthesis: none;
+}
+
+body, p, h1, h2, h3, h4, h5, h6, button, nav, nav a, .brand, .eyebrow {
+  letter-spacing: normal;
+  font-kerning: normal;
+  font-synthesis: none;
+}
+
+.brand, .eyebrow {
+  text-transform: none;
+}
+
+.hero h1,
+.page > h1,
+.content-grid h2,
+.page > h2,
+.article h2,
+.entry h3,
+.entry-list .entry h2,
+.article .summary {
+  font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif;
+  letter-spacing: normal;
+  font-kerning: normal;
+  font-synthesis: none;
+}

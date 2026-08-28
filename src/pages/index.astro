@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/fonts.css';
 import { getCollection } from 'astro:content';
 const nav = [['Trang chủ', '/'], ['Giới thiệu', '/about/'], ['Nhật ký', '/journal/'], ['Thí nghiệm', '/experiments/'], ['Hệ thống', '/system/'], ['Kết quả', '/results/']];
 const entries = (await getCollection('journal', ({ data }) => !data.draft)).sort((a, b) => b.data.researchDate.valueOf() - a.data.researchDate.valueOf()).slice(0, 3);

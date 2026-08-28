@@ -1,4 +1,5 @@
 ---
-const { id, title = 'Video nghiên cứu trên YouTube' } = Astro.props;
+const { id: rawId, title = 'Video nghiên cứu trên YouTube', caption } = Astro.props;
+const id = String(rawId).match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))?([\w-]{11})/)?.[1] || String(rawId);
 ---
-<figure class="video-figure"><iframe src={`https://www.youtube-nocookie.com/embed/${id}`} title={title} loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><figcaption><a href={`https://www.youtube.com/watch?v=${id}`}>Mở trực tiếp trên YouTube ↗</a></figcaption></figure>
+<figure class="video-figure"><iframe src={`https://www.youtube-nocookie.com/embed/${id}`} title={title} loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><figcaption>{caption || title} · <a href={`https://www.youtube.com/watch?v=${id}`}>Mở trực tiếp trên YouTube ↗</a></figcaption></figure>
