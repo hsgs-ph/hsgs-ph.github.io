@@ -31,8 +31,15 @@ npm run images:optimize
 - `src/content/system-versions/`: phiên bản nguyên mẫu.
 - `src/content.config.ts`: schema bắt buộc của ba collection.
 - `src/data/progress.ts`: cấu hình sáu giai đoạn tiến độ.
+- `public/admin/`: Decap CMS; không xuất hiện trong menu công khai.
 
 Mọi nội dung chưa có hồ sơ thật phải ghi `Dữ liệu minh họa – cần thay thế` hoặc `Chưa có dữ liệu`. Không điền số liệu nghiên cứu giả.
+
+## Quản trị nội dung
+
+Mở `/admin/` để dùng giao diện Decap CMS. CMS dùng GitHub backend và tạo commit trực tiếp trên repository sau khi OAuth proxy được cấu hình. Hiện `auth_endpoint` là placeholder, chưa có OAuth App hoặc secret nào trong mã nguồn. Chi tiết cấu hình nằm ở [docs/ADMIN_OAUTH_SETUP.md](docs/ADMIN_OAUTH_SETUP.md).
+
+Decap CMS chưa cung cấp cơ chế đáng tin cậy để tự đặt `createdAt`/`updatedAt` đúng thời điểm mà vẫn bảo toàn `createdAt` khi sửa. Hai trường này vì vậy là tùy chọn và phải được điền thủ công nếu có mốc xác thực; không giả vờ tự động hóa timestamp.
 
 ## Tạo bài nhật ký
 

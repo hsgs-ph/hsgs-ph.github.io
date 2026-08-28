@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quản trị nội dung | Nhật ký nghiên cứu</title>
+  </head>
+  <body>
+    <noscript>Trang quản trị cần JavaScript để hoạt động.</noscript>
+    <script src="https://unpkg.com/decap-cms@3.8.3/dist/decap-cms.js"></script>
+    <script>
+      const observeUploads = () => {
+        document.querySelectorAll('input[type="file"]').forEach((input) => {
+          if (input.dataset.sizeGuard) return;
+          input.dataset.sizeGuard = 'true';
+          input.addEventListener('change', () => {
+            const tooLarge = [...input.files].some((file) => file.size > 2 * 1024 * 1024);
+            if (tooLarge) alert('Ảnh lớn hơn 2 MB. Hãy tối ưu bản sao trước khi tải lên.');
+          });
+        });
+      };
+      new MutationObserver(observeUploads).observe(document.body, { childList: true, subtree: true });
+    </script>
+  </body>
+</html>

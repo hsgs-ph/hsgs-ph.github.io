@@ -1,0 +1,73 @@
+backend:
+  name: github
+  repo: hsgs-ph/hsgs-ph.github.io
+  branch: main
+  base_url: https://github.com
+  auth_endpoint: https://YOUR-OAUTH-PROXY.example.com/auth
+  commit_messages:
+    create: "journal: create {{slug}}"
+    update: "journal: update {{slug}}"
+    delete: "journal: delete {{slug}}"
+
+site_url: https://hsgs-ph.github.io
+publish_mode: simple
+media_folder: public/images/journal
+public_folder: /images/journal
+collections:
+  - name: journal
+    label: Nhật ký nghiên cứu
+    label_singular: Bài nhật ký
+    folder: src/content/journal
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{researchDate}} · {{title}}"
+    fields:
+      - { label: Tiêu đề, name: title, widget: string }
+      - { label: Slug, name: slug, widget: string, required: false, hint: "Slug được tạo từ ngày và tiêu đề không dấu; không đổi slug bài đã công bố nếu không cần thiết." }
+      - { label: Ngày nghiên cứu, name: researchDate, widget: date, format: YYYY-MM-DD, time_format: false }
+      - { label: Ngày tạo, name: createdAt, widget: datetime, required: false, hint: "Decap CMS không tự đặt timestamp đáng tin cậy; chỉ điền khi có thời điểm tạo xác thực." }
+      - { label: Ngày cập nhật, name: updatedAt, widget: datetime, required: false, hint: "Cập nhật thủ công khi sửa. Git commit time vẫn là bằng chứng thời điểm lưu." }
+      - { label: Người thực hiện, name: authors, widget: list, field: { label: Tên, name: name, widget: string } }
+      - { label: Tóm tắt, name: summary, widget: text }
+      - label: Loại hoạt động
+        name: activityTypes
+        widget: select
+        multiple: true
+        options: [tai-lieu, co-khi, dien-tu, lap-trinh, che-tao, hieu-chuan, thi-nghiem, phan-tich, sua-loi, bao-cao]
+      - { label: Trạng thái, name: status, widget: select, options: [planned, in-progress, completed, issue] }
+      - { label: Thí nghiệm liên quan, name: experimentIds, widget: list, required: false, hint: "Ví dụ: TN1, TN2." }
+      - { label: Phiên bản hệ thống, name: systemVersion, widget: string, required: false }
+      - { label: Nhãn, name: tags, widget: list, required: false }
+      - { label: Ảnh đại diện, name: coverImage, widget: image, required: false, media_folder: /public/images/journal, allow_multiple: false }
+      - { label: Mô tả ảnh đại diện, name: coverAlt, widget: string, required: false }
+      - label: Thư viện ảnh
+        name: images
+        widget: list
+        required: false
+        fields:
+          - { label: Ảnh, name: src, widget: image, media_folder: /public/images/journal }
+          - { label: Alt, name: alt, widget: string }
+          - { label: Chú thích, name: caption, widget: text, required: false }
+      - label: Video YouTube
+        name: youtubeVideos
+        widget: list
+        required: false
+        hint: "Nhập ID hoặc URL YouTube đầy đủ. Không tải video vào repository."
+        fields:
+          - { label: ID hoặc URL video, name: id, widget: string }
+          - { label: Tiêu đề video, name: title, widget: string }
+          - { label: Chú thích, name: caption, widget: text, required: false }
+      - { label: ID YouTube cũ, name: youtubeIds, widget: list, required: false, hint: "Tương thích dữ liệu cũ; dùng youtubeVideos cho bài mới." }
+      - { label: Tệp dữ liệu, name: dataFiles, widget: list, required: false }
+      - { label: Commit GitHub, name: githubCommit, widget: string, required: false }
+      - { label: Bản nháp, name: draft, widget: boolean, default: false }
+      - { label: Mục tiêu, name: objective, widget: markdown, required: false }
+      - { label: Thiết bị và vật liệu, name: equipment, widget: markdown, required: false }
+      - { label: Các bước thực hiện, name: procedure, widget: markdown, required: false }
+      - { label: Kết quả và quan sát, name: observations, widget: markdown, required: false }
+      - { label: Số liệu, name: data, widget: markdown, required: false }
+      - { label: Vấn đề và sai số, name: issues, widget: markdown, required: false }
+      - { label: Điều chỉnh, name: adjustments, widget: markdown, required: false }
+      - { label: Công việc tiếp theo, name: nextSteps, widget: markdown, required: false }
+      - { label: Nội dung Markdown, name: body, widget: markdown }

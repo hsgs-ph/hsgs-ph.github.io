@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/detail.css';
+import '../styles/fonts.css';
 const { title, eyebrow } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const path = (href: string) => `${base === '/' ? '' : base.replace(/\/$/, '')}/${href.replace(/^\//, '')}`;
