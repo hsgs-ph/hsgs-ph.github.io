@@ -1,0 +1,4 @@
+---
+const { id, title = 'Video nghiên cứu trên YouTube' } = Astro.props;
+---
+<figure class="video-figure"><iframe src={`https://www.youtube-nocookie.com/embed/${id}`} title={title} loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><figcaption><a href={`https://www.youtube.com/watch?v=${id}`}>Mở trực tiếp trên YouTube ↗</a></figcaption></figure>

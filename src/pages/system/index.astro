@@ -1,0 +1,7 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+const versions = await getCollection('systemVersions');
+const journal = await getCollection('journal');
+---
+<Page title="Hệ thống" eyebrow="04 / NGUYÊN MẪU VÀ KIẾN TRÚC"><div class="content-grid"><article><h2>Một chu trình đo hoàn chỉnh</h2><p>Hệ thống điều khiển bơm, van, cảm biến pH và bộ ghi dữ liệu theo thứ tự có thể truy vết.</p><div class="system-flow"><span>Rửa</span><b>→</b><span>Đo pH</span><b>→</b><span>Ghi dữ liệu</span><b>→</b><span>Bảo quản</span></div></article><aside class="notice"><strong>KHÔNG CÓ SỐ LIỆU GIẢ</strong><p>Thông tin kỹ thuật chưa kiểm chứng được đánh dấu là dữ liệu minh họa.</p></aside></div><h2>Phiên bản nguyên mẫu</h2>{versions.map((version) => <article class="entry"><div class="entry-meta"><time>{version.data.date.toLocaleDateString('vi-VN')}</time><span class="dot"></span><span>{version.data.status}</span></div><h3>{version.data.version} · {version.data.title}</h3><p>{version.data.summary}</p><p><strong>Nhật ký liên quan:</strong> {version.data.journalSlugs.map((slug) => { const entry = journal.find((item) => item.id === slug); return entry ? <a href={`${import.meta.env.BASE_URL}journal/${slug}/`}> {entry.data.title} ·</a> : null })}</p></article>)}</Page>

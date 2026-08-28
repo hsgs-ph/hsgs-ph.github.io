@@ -1,0 +1,6 @@
+---
+import Page from '../layouts/Page.astro';
+import { getCollection } from 'astro:content';
+const items = (await getCollection('experiments')).sort((a, b) => a.data.order - b.data.order);
+---
+<Page title="Thí nghiệm" eyebrow="03 / THIẾT KẾ KIỂM CHỨNG"><div class="card-grid">{items.map((item)=><article class="entry"><span class="eyebrow">{item.data.id} · {item.data.status}</span><h2>{item.data.title}</h2><p>{item.data.summary}</p><a href={`${import.meta.env.BASE_URL}experiments/${item.data.id}/`}>Xem chi tiết thí nghiệm →</a></article>)}</div></Page>

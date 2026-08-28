@@ -1,0 +1,6 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import readline from 'node:readline/promises';
+const rl=readline.createInterface({input:process.stdin,output:process.stdout});
+const date=process.argv[2]||new Date().toISOString().slice(0,10); const title=process.argv[3]||await rl.question('Tiêu đề: '); const author=process.argv[4]||'Tên người thực hiện';
+const slug=title.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); const file=path.join('src','content','journal',`${date}-${slug}.md`); if(fs.existsSync(file)) throw new Error(`Đã tồn tại: ${file}`); fs.mkdirSync(path.dirname(file),{recursive:true}); fs.mkdirSync(path.join('public','images','journal',date.slice(0,4),date.slice(5,7),date.slice(8,10)),{recursive:true}); fs.writeFileSync(file,`---\ntitle: "${title}"\nresearchDate: ${date}\npublishedDate: ${new Date().toISOString().slice(0,10)}\nauthors: ["${author}"]\nsummary: "Mô tả ngắn hoạt động và kết quả chính."\nactivityTypes: ["thi-nghiem"]\nstatus: "planned"\ndraft: false\n---\n\n## Mục tiêu\n\nCẦN CẬP NHẬT\n\n## Kết quả và quan sát\n\nCẦN CẬP NHẬT\n`); console.log(`Đã tạo ${file}`); rl.close();

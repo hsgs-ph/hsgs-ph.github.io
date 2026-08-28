@@ -1,0 +1,1 @@
+console.log('Bộ tối ưu ảnh chưa có đầu vào. Hãy đặt bản sao ảnh web trong public/images/ trước khi bổ sung pipeline WebP.');
