@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://<TEN_GITHUB>.github.io/<TEN_REPOSITORY>/sitemap-index.xml
+Sitemap: https://hsgs-ph.github.io/ph-research-journal/sitemap-index.xml

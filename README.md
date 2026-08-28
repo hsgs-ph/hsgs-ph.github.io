@@ -69,25 +69,25 @@ Các tiền tố commit: `journal:`, `experiment:`, `system:`, `data:`, `fix:`, 
 
 ## GitHub Pages
 
-1. Tạo repository mới trên GitHub, ví dụ `ph-research-journal`.
-2. Đặt remote: `git remote add origin https://github.com/<TEN_GITHUB>/<TEN_REPOSITORY>.git`.
+1. Repository GitHub là `https://github.com/hsgs-ph/ph-research-journal`.
+2. Đặt remote: `git remote add origin https://github.com/hsgs-ph/ph-research-journal.git`.
 3. Push nhánh `main` sau khi đã kiểm tra local.
 4. Vào **Settings → Pages → Source: GitHub Actions**.
 5. Workflow `deploy-pages.yml` tự lấy tên owner/repository từ GitHub để đặt `SITE_URL` và `BASE_PATH`.
 
-Khi chạy local hoặc preview với repository khác, đặt:
+Thông tin triển khai hiện tại:
 
 ```text
-SITE_URL=https://<TEN_GITHUB>.github.io/<TEN_REPOSITORY>
-BASE_PATH=/<TEN_REPOSITORY>
-PUBLIC_GITHUB_REPO_URL=https://github.com/<TEN_GITHUB>/<TEN_REPOSITORY>
+SITE_URL=https://hsgs-ph.github.io
+BASE_PATH=/ph-research-journal
+PUBLIC_GITHUB_REPO_URL=https://github.com/hsgs-ph/ph-research-journal
 ```
 
-Ba giá trị này là nơi cần điền **tên GitHub và tên repository**. Không đưa token vào `.env` hoặc mã nguồn. Nếu site bị lỗi CSS/link, kiểm tra `BASE_PATH` có bắt đầu bằng `/`, khớp chính xác tên repository và build lại.
+Ba giá trị này đã được cấu hình trong `.env.example`, `astro.config.mjs` và workflow Pages. Không đưa token vào `.env` hoặc mã nguồn. Nếu site bị lỗi CSS/link, kiểm tra `BASE_PATH` có bắt đầu bằng `/ph-research-journal`, khớp chính xác tên repository và build lại.
 
 ## RSS, sitemap và lỗi deploy
 
-RSS ở `/rss.xml`, sitemap được tạo bởi `@astrojs/sitemap`, còn `public/robots.txt` cần cập nhật URL sitemap sau khi biết owner/repository thật. Nếu deploy lỗi, xem log Actions, xác nhận Node/npm lockfile, quyền Pages và nhánh `main`; chạy lại `npm ci`, `npm run check`, `npm run build` local.
+RSS ở `https://hsgs-ph.github.io/ph-research-journal/rss.xml`, sitemap được tạo bởi `@astrojs/sitemap`, và robots.txt đã trỏ tới sitemap Pages thật. Nếu deploy lỗi, xem log Actions, xác nhận Node/npm lockfile, quyền Pages và nhánh `main`; chạy lại `npm ci`, `npm run check`, `npm run build` local.
 
 ## Thông tin còn cần bổ sung
 
