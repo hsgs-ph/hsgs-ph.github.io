@@ -14,7 +14,7 @@ npm ci
 npm run dev
 ```
 
-Mở `http://localhost:4321/ph-research-journal/`. Khi chạy site ở root, dùng `BASE_PATH=/ npm run dev` trên PowerShell hoặc đặt biến môi trường tương ứng.
+Mở `http://localhost:4321/`. Website User Site dùng base root `/`.
 
 ```bash
 npm run check
@@ -69,8 +69,8 @@ Các tiền tố commit: `journal:`, `experiment:`, `system:`, `data:`, `fix:`, 
 
 ## GitHub Pages
 
-1. Repository GitHub là `https://github.com/hsgs-ph/ph-research-journal`.
-2. Đặt remote: `git remote add origin https://github.com/hsgs-ph/ph-research-journal.git`.
+1. Repository GitHub là `https://github.com/hsgs-ph/hsgs-ph.github.io`.
+2. Đặt remote: `git remote add origin https://github.com/hsgs-ph/hsgs-ph.github.io.git`.
 3. Push nhánh `main` sau khi đã kiểm tra local.
 4. Vào **Settings → Pages → Source: GitHub Actions**.
 5. Workflow `deploy-pages.yml` tự lấy tên owner/repository từ GitHub để đặt `SITE_URL` và `BASE_PATH`.
@@ -79,15 +79,15 @@ Thông tin triển khai hiện tại:
 
 ```text
 SITE_URL=https://hsgs-ph.github.io
-BASE_PATH=/ph-research-journal
-PUBLIC_GITHUB_REPO_URL=https://github.com/hsgs-ph/ph-research-journal
+BASE_PATH=/
+PUBLIC_GITHUB_REPO_URL=https://github.com/hsgs-ph/hsgs-ph.github.io
 ```
 
-Ba giá trị này đã được cấu hình trong `.env.example`, `astro.config.mjs` và workflow Pages. Không đưa token vào `.env` hoặc mã nguồn. Nếu site bị lỗi CSS/link, kiểm tra `BASE_PATH` có bắt đầu bằng `/ph-research-journal`, khớp chính xác tên repository và build lại.
+Ba giá trị này đã được cấu hình trong `.env.example`, `astro.config.mjs` và workflow Pages. Không đưa token vào `.env` hoặc mã nguồn. Nếu site bị lỗi CSS/link, kiểm tra `BASE_PATH=/` và build lại.
 
 ## RSS, sitemap và lỗi deploy
 
-RSS ở `https://hsgs-ph.github.io/ph-research-journal/rss.xml`, sitemap được tạo bởi `@astrojs/sitemap`, và robots.txt đã trỏ tới sitemap Pages thật. Nếu deploy lỗi, xem log Actions, xác nhận Node/npm lockfile, quyền Pages và nhánh `main`; chạy lại `npm ci`, `npm run check`, `npm run build` local.
+RSS ở `https://hsgs-ph.github.io/rss.xml`, sitemap được tạo bởi `@astrojs/sitemap`, và robots.txt đã trỏ tới sitemap Pages thật. Nếu deploy lỗi, xem log Actions, xác nhận Node/npm lockfile, quyền Pages và nhánh `main`; chạy lại `npm ci`, `npm run check`, `npm run build` local.
 
 ## Thông tin còn cần bổ sung
 

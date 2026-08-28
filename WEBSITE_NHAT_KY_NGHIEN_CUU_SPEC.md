@@ -425,7 +425,7 @@ Yêu cầu:
 ## 10. Cấu trúc repository dự kiến
 
 ```text
-ph-research-journal/
+hsgs-ph.github.io/
 ├── .github/
 │   ├── workflows/
 │   │   ├── ci.yml
@@ -651,7 +651,7 @@ README cần có:
 ## 18. Trình tự Codex phải thực hiện
 
 1. Kiểm tra thư mục hiện tại và xác nhận không nằm trong repository ChilNet.
-2. Nếu đang ở ChilNet hoặc một repository khác, dừng và yêu cầu người dùng mở một thư mục dự án mới, ví dụ `ph-research-journal`.
+2. Nếu đang ở ChilNet hoặc một repository khác, dừng và yêu cầu người dùng mở một thư mục dự án mới, ví dụ `hsgs-ph.github.io`.
 3. Kiểm tra `git status` trước khi tạo tệp; không sửa hoặc xóa thay đổi ngoài phạm vi.
 4. Khởi tạo Astro với TypeScript trong chính thư mục dự án mới.
 5. Cài các dependency tối thiểu cần thiết; không dùng dependency nặng nếu CSS hoặc JavaScript nhỏ có thể xử lý.
@@ -694,7 +694,7 @@ Codex cần bàn giao:
 ## Lệnh bắt đầu dành cho người dùng
 
 1. Giữ nguyên cửa sổ VS Code đang chạy ChilNet.
-2. Tạo và mở một cửa sổ VS Code mới tại thư mục trống `ph-research-journal`.
+2. Tạo và mở một cửa sổ VS Code mới tại thư mục trống `hsgs-ph.github.io`.
 3. Sao chép tệp đặc tả này vào thư mục đó.
 4. Mở Codex trong cửa sổ mới và gửi yêu cầu:
 
