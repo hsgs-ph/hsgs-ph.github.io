@@ -2,10 +2,11 @@
 
 ## Phạm vi
 
-Trang quản trị nằm tại `https://hsgs-ph.github.io/admin/`. GitHub Pages chỉ phục vụ file tĩnh, vì vậy không thể tự xử lý OAuth callback hoặc giữ client secret. `public/admin/config.yml` hiện dùng GitHub backend và một `auth_endpoint` placeholder:
+Trang quản trị nằm tại `https://hsgs-ph.github.io/admin/`. GitHub Pages chỉ phục vụ file tĩnh, vì vậy không thể tự xử lý OAuth callback hoặc giữ client secret. `public/admin/config.yml` hiện dùng GitHub backend và các placeholder của OAuth proxy:
 
 ```text
-auth_endpoint: https://YOUR-OAUTH-PROXY.example.com/auth
+base_url: https://YOUR-OAUTH-PROXY.example.com
+auth_endpoint: auth
 ```
 
 Chưa tạo OAuth App, chưa triển khai proxy và chưa có secret trong repository.
@@ -22,7 +23,7 @@ Decap CMS cần một endpoint server-side để nhận callback GitHub và trao
 4. Tạo Cloudflare Worker OAuth proxy theo tài liệu Decap CMS/GitHub OAuth.
 5. Lưu `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` và các secret phiên trong Cloudflare secret bindings, không commit chúng.
 6. Proxy chỉ cấp token cho người dùng đã được phép và chỉ phục vụ repository `hsgs-ph/hsgs-ph.github.io`.
-7. Cập nhật `auth_endpoint` trong `public/admin/config.yml` bằng URL HTTPS thật của Worker.
+7. Cập nhật `base_url` trong `public/admin/config.yml` bằng domain HTTPS thật của Worker; giữ `auth_endpoint: auth` nếu Worker dùng đường dẫn `/auth`.
 8. Đăng nhập tại `/admin/`, thử tạo một bài nháp nhỏ, kiểm tra commit trên nhánh `main`, rồi xóa bài thử.
 
 ## Quyền và giới hạn

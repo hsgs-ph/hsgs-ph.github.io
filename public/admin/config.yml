@@ -2,8 +2,8 @@ backend:
   name: github
   repo: hsgs-ph/hsgs-ph.github.io
   branch: main
-  base_url: https://github.com
-  auth_endpoint: https://YOUR-OAUTH-PROXY.example.com/auth
+  base_url: https://YOUR-OAUTH-PROXY.example.com
+  auth_endpoint: auth
   commit_messages:
     create: "journal: create {{slug}}"
     update: "journal: update {{slug}}"
