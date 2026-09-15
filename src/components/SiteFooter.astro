@@ -1,0 +1,30 @@
+---
+const base = import.meta.env.BASE_URL;
+const basePrefix = base === '/' ? '' : base.replace(/\/$/, '');
+const path = (href: string) => `${basePrefix}/${href.replace(/^\//, '')}`;
+const { updatedText } = Astro.props;
+---
+
+<footer>
+  <div class="shell footer-grid">
+    <div>
+      <a class="brand" href={path('/')} aria-label="Nhật ký nghiên cứu — Trang chủ">
+        <span class="brand-mark">pH</span>
+        <span>Nhật ký<br /><strong>nghiên cứu</strong></span>
+      </a>
+      <p>Minh chứng cho một quá trình nghiên cứu trung thực, có thể kiểm chứng.</p>
+    </div>
+    <div>
+      <b>Tài nguyên</b>
+      <a href={path('/about/')}>Giới thiệu đề tài</a>
+      <a href={path('/experiments/')}>Danh sách thí nghiệm</a>
+      <a href={path('/library/')}>Thư viện video</a>
+      <a href="https://github.com/hsgs-ph/hsgs-ph.github.io">Repository GitHub ↗</a>
+    </div>
+    <div>
+      <b>Thông tin</b>
+      {updatedText && <span>{updatedText}</span>}
+      <span>Dữ liệu minh họa · cần thay thế</span>
+    </div>
+  </div>
+</footer>

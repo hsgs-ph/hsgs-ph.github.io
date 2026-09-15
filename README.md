@@ -53,7 +53,43 @@ Có thể truyền ngày, tiêu đề và người thực hiện theo vị trí:
 
 Ảnh web đặt trong `public/images/journal/YYYY/MM/DD/`, đặt tên dạng `YYYY-MM-DD-mo-ta-so-thu-tu.webp`. Mỗi ảnh trong frontmatter cần `src`, `alt` và có thể có `caption`. Bản tối ưu dùng cho web là bản sao, không thay thế ảnh gốc nghiên cứu. Script `images:optimize` là điểm mở rộng cho pipeline WebP.
 
-YouTube chỉ lưu video ID trong `youtubeIds`. Component `YouTube.astro` dùng iframe lazy loading và có liên kết mở trực tiếp. Không đưa file video vào repository.
+### Thêm video thí nghiệm
+
+1. Upload video thật đã kiểm tra lên YouTube.
+2. Mở bài tương ứng trong `src/content/journal/`.
+3. Thêm metadata theo mẫu:
+
+   ```yaml
+   youtubeVideos:
+     - id: "YOUTUBE_VIDEO_ID"
+       title: "Tên video"
+       caption: "Mô tả ngắn về quá trình thí nghiệm"
+   ```
+
+4. Khi bài đã được kiểm chứng và sẵn sàng công bố, đặt `draft: false`.
+5. Commit bằng message `journal: YYYY-MM-DD them-video-thi-nghiem`.
+
+Video khai báo trong `youtubeVideos` hoặc trường tương thích cũ `youtubeIds` chỉ xuất hiện trong bài Nhật ký tương ứng, không tự động đưa sang Thư viện. Component `YouTube.astro` dùng `youtube-nocookie.com`, iframe lazy loading và liên kết mở trực tiếp. Không đưa file video vào repository và không thêm ID minh họa giả.
+
+### Cập nhật ảnh và video trình bày
+
+Các vị trí media chưa có dữ liệu thật được khai báo tập trung trong `src/data/siteMedia.ts`:
+
+- `teamMembers`: ảnh chân dung 3 × 4, tên và lớp học của hai thành viên;
+- `homePrototypeImage`: ảnh mô hình nguyên mẫu trên trang chủ;
+- `systemOverviewImage`: ảnh tổng quan trong mục Hệ thống;
+- `prototypeVideo`: URL hoặc YouTube ID của video riêng trong mục Hệ thống;
+- `libraryVideos`: sáu URL YouTube độc lập, tiêu đề và chú thích của Thư viện.
+
+Để cập nhật một video Thư viện, dán URL YouTube vào đúng `youtubeUrl`:
+
+```ts
+{ youtubeUrl: 'https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID', title: 'Tên video', caption: 'Chú thích video' }
+```
+
+Video Thư viện, video trong Nhật ký và video Hệ thống là ba nguồn độc lập.
+
+Đặt ảnh web đã tối ưu trong `public/images/`, sau đó dùng đường dẫn bắt đầu bằng `/images/`. Để trống trường chưa có dữ liệu thật; giao diện sẽ hiển thị ô chờ thay vì tạo nội dung minh họa giả.
 
 CSV/JSON công khai đặt trong `public/data/`, phải có tên cột, đơn vị và mô tả nguồn. Chỉ thêm dữ liệu đã kiểm tra; dữ liệu thô lớn hoặc có thông tin cá nhân nên để ở kho riêng.
 

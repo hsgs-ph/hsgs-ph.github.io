@@ -1,0 +1,37 @@
+---
+import YouTube from '../components/YouTube.astro';
+import { libraryVideos } from '../data/siteMedia';
+import Page from '../layouts/Page.astro';
+---
+
+<Page
+  title="Thư viện video thí nghiệm"
+  eyebrow="06 / TƯ LIỆU QUÁ TRÌNH"
+  description="Sáu video YouTube độc lập ghi lại các mốc chính của quá trình nghiên cứu và thí nghiệm."
+>
+  <p class="page-intro">Thư viện là khu vực video độc lập. Các video tại đây không lấy từ bài Nhật ký, mục Thí nghiệm hoặc mục Hệ thống.</p>
+
+  <div class="milestone-video-grid">
+    {libraryVideos.map((video, index) => (
+      <article class:list={['video-card', !video.youtubeUrl && 'video-card-placeholder']}>
+        <div class="milestone-label">Video {String(index + 1).padStart(2, '0')}</div>
+        {video.youtubeUrl ? (
+          <YouTube id={video.youtubeUrl} title={video.title} caption={video.caption} showCaption={false} />
+        ) : (
+          <div class="video-placeholder" role="img" aria-label={`Chưa có video thư viện số ${index + 1}`}>
+            <span aria-hidden="true">▶</span>
+            <small>Chưa có video YouTube</small>
+          </div>
+        )}
+        <div class="video-card-body">
+          <h2>{video.title}</h2>
+          {video.caption ? (
+            <p>{video.caption}</p>
+          ) : (
+            <p>Dán đường dẫn YouTube riêng của video này trong cấu hình Thư viện.</p>
+          )}
+        </div>
+      </article>
+    ))}
+  </div>
+</Page>

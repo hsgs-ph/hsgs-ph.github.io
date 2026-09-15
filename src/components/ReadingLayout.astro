@@ -1,0 +1,60 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface DirectoryItem {
+  id: string;
+  title: string;
+  href: string;
+  meta?: string;
+  draft?: boolean;
+}
+
+interface Props {
+  headings: Heading[];
+  directoryItems: DirectoryItem[];
+  currentId: string;
+  directoryTitle: string;
+}
+
+const { headings, directoryItems, currentId, directoryTitle } = Astro.props;
+const tableOfContents = headings.filter((heading: Heading) => heading.depth >= 2 && heading.depth <= 3);
+---
+
+<div class="reading-layout">
+  <aside class="reading-sidebar reading-toc">
+    <p class="sidebar-label">Mục lục bài viết</p>
+    {tableOfContents.length > 0 ? (
+      <nav aria-label="Mục lục bài viết">
+        {tableOfContents.map((heading: Heading) => (
+          <a class:list={['toc-link', `depth-${heading.depth}`]} href={`#${heading.slug}`}>{heading.text}</a>
+        ))}
+      </nav>
+    ) : (
+      <p class="sidebar-empty">Bài viết chưa có đề mục.</p>
+    )}
+  </aside>
+
+  <article class="article reading-article">
+    <slot />
+  </article>
+
+  <aside class="reading-sidebar reading-directory">
+    <p class="sidebar-label">{directoryTitle}</p>
+    <nav class="directory-tree" aria-label={directoryTitle}>
+      {directoryItems.map((item: DirectoryItem, index: number) => (
+        <a href={item.href} aria-current={item.id === currentId ? 'page' : undefined}>
+          <span class="tree-index">{String(index + 1).padStart(2, '0')}</span>
+          <span>
+            {item.meta && <small>{item.meta}</small>}
+            <strong>{item.title}</strong>
+            {item.draft && <em>Chưa công bố</em>}
+          </span>
+        </a>
+      ))}
+    </nav>
+  </aside>
+</div>

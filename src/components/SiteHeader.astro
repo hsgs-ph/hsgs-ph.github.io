@@ -1,0 +1,76 @@
+---
+const base = import.meta.env.BASE_URL;
+const basePrefix = base === '/' ? '' : base.replace(/\/$/, '');
+const path = (href: string) => `${basePrefix}/${href.replace(/^\//, '')}`;
+const links = [
+  ['Trang chủ', '/'],
+  ['Giới thiệu', '/about/'],
+  ['Nhật ký', '/journal/'],
+  ['Thí nghiệm', '/experiments/'],
+  ['Hệ thống', '/system/'],
+  ['Kết quả', '/results/'],
+  ['Thư viện', '/library/'],
+];
+const currentPath = Astro.url.pathname.replace(basePrefix, '') || '/';
+const isActive = (href: string) => href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+---
+
+<header class="site-header" data-site-header>
+  <div class="shell nav-wrap">
+    <a class="brand" href={path('/')} aria-label="Nhật ký nghiên cứu — Trang chủ">
+      <span class="brand-mark">pH</span>
+      <span>Nhật ký<br /><strong>nghiên cứu</strong></span>
+    </a>
+    <button
+      class="menu"
+      type="button"
+      aria-label="Mở menu điều hướng"
+      aria-controls="main-navigation"
+      aria-expanded="false"
+    >
+      <span class="menu-line"></span>
+      <span class="menu-line"></span>
+      <span class="menu-line"></span>
+    </button>
+    <nav id="main-navigation" aria-label="Điều hướng chính">
+      {links.map(([label, href]) => (
+        <a href={path(href)} aria-current={isActive(href) ? 'page' : undefined}>{label}</a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  const button = header?.querySelector<HTMLButtonElement>('.menu');
+  const navigation = header?.querySelector<HTMLElement>('#main-navigation');
+
+  function closeMenu() {
+    if (!header || !button) return;
+    header.removeAttribute('data-menu-open');
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-label', 'Mở menu điều hướng');
+  }
+
+  button?.addEventListener('click', () => {
+    if (!header) return;
+    const open = header.toggleAttribute('data-menu-open');
+    button.setAttribute('aria-expanded', String(open));
+    button.setAttribute('aria-label', open ? 'Đóng menu điều hướng' : 'Mở menu điều hướng');
+  });
+
+  navigation?.addEventListener('click', (event) => {
+    if ((event.target as HTMLElement).closest('a')) closeMenu();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && header?.hasAttribute('data-menu-open')) {
+      closeMenu();
+      button?.focus();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.matchMedia('(min-width: 901px)').matches) closeMenu();
+  });
+</script>
