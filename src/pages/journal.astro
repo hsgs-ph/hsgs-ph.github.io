@@ -5,7 +5,7 @@ import { isMainJournal } from '../data/mainJournals';
 
 const entries = (await getCollection('journal'))
   .filter((entry) => isMainJournal(entry.id))
-  .sort((a, b) => b.data.researchDate.valueOf() - a.data.researchDate.valueOf());
+  .sort((a, b) => a.data.researchDate.valueOf() - b.data.researchDate.valueOf());
 ---
 
 <Page title="Nhật ký nghiên cứu" eyebrow="02 / DÒNG THỜI GIAN">
