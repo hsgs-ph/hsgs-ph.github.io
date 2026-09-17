@@ -1,5 +1,6 @@
 ---
 import { teamMembers } from '../data/siteMedia';
+import ZoomableImage from '../components/ZoomableImage.astro';
 import Page from '../layouts/Page.astro';
 ---
 
@@ -26,7 +27,11 @@ import Page from '../layouts/Page.astro';
           <article class="member-card">
             <div class="portrait-frame">
               {member.imageSrc ? (
-                <img src={member.imageSrc} alt={member.imageAlt} loading="lazy" />
+                <ZoomableImage
+                  src={member.imageSrc}
+                  alt={member.imageAlt}
+                  description={`${member.name} · ${member.className}`}
+                />
               ) : (
                 <div class="portrait-placeholder" role="img" aria-label={`Vị trí ảnh 3 × 4 của thành viên ${index + 1}`}>
                   <span aria-hidden="true">＋</span>

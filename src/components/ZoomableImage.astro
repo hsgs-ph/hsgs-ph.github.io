@@ -1,0 +1,54 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  description?: string;
+}
+
+const { src, alt, description = alt } = Astro.props;
+---
+
+<button
+  class="image-zoom-trigger"
+  type="button"
+  aria-label={`Phóng to ảnh: ${description}`}
+  title="Nhấn để phóng to ảnh"
+>
+  <img src={src} alt={alt} loading="lazy" />
+</button>
+
+<dialog class="image-lightbox" aria-label={`Ảnh phóng to: ${description}`}>
+  <button
+    class="image-lightbox-close"
+    type="button"
+    aria-label="Thu nhỏ ảnh"
+    title="Nhấn để thu nhỏ ảnh"
+  >
+    <img src={src} alt={alt} />
+  </button>
+  <p>{description}</p>
+</dialog>
+
+<script>
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    const trigger = target.closest<HTMLButtonElement>('.image-zoom-trigger');
+    if (trigger) {
+      const dialog = trigger.parentElement?.querySelector<HTMLDialogElement>('.image-lightbox');
+      dialog?.showModal();
+      return;
+    }
+
+    const closeButton = target.closest<HTMLButtonElement>('.image-lightbox-close');
+    if (closeButton) {
+      closeButton.closest<HTMLDialogElement>('.image-lightbox')?.close();
+      return;
+    }
+
+    if (target instanceof HTMLDialogElement && target.classList.contains('image-lightbox')) {
+      target.close();
+    }
+  });
+</script>

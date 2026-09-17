@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import Figure from '../../components/Figure.astro';
 import ReadingLayout from '../../components/ReadingLayout.astro';
 import Page from '../../layouts/Page.astro';
 
@@ -35,6 +36,7 @@ const directoryItems = experiments.map((item) => ({
       <span class="dot orange"></span>
       <span>{experiment.data.status}</span>
       <span>· Bắt đầu {experiment.data.startDate.toLocaleDateString('vi-VN')}</span>
+      <span>· {experiment.data.dataStatus}</span>
     </div>
     <p class="summary">{experiment.data.summary}</p>
     <div class="data-grid">
@@ -43,6 +45,14 @@ const directoryItems = experiments.map((item) => ({
       <div><b>Biến kiểm soát</b><span>{experiment.data.controlVariables.join(', ') || 'Chưa có dữ liệu'}</span></div>
     </div>
     <div class="prose"><Content /></div>
+    {experiment.data.images.length > 0 && (
+      <section class="experiment-evidence">
+        <h2>Kết quả và minh chứng</h2>
+        <div class="media-grid">
+          {experiment.data.images.map((image) => <Figure {...image} />)}
+        </div>
+      </section>
+    )}
     <h2>Nhật ký liên quan</h2>
     {related.length ? (
       <div class="entry-list">

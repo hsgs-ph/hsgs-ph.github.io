@@ -69,6 +69,15 @@
 
 .notice .button { margin-top: 18px; }
 
+.experiment-guidance { margin-bottom: 24px; }
+
+.experiment-guidance ul {
+  margin: 12px 0 0;
+  padding-left: 20px;
+}
+
+.experiment-guidance li + li { margin-top: 6px; }
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -404,11 +413,86 @@
 .media-figure,
 .video-figure { margin: 0; }
 
+.image-zoom-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.image-zoom-trigger:focus-visible {
+  outline: 3px solid var(--orange-600);
+  outline-offset: 3px;
+}
+
 .media-figure img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 12px;
+}
+
+.image-zoom-trigger img {
+  transition: transform 180ms ease;
+}
+
+.image-zoom-trigger:hover img { transform: scale(1.015); }
+
+.image-lightbox {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: clamp(16px, 3vw, 36px);
+  border: 0;
+  background: rgba(3, 20, 29, 0.94);
+  color: #fff;
+  overflow: hidden;
+}
+
+.image-lightbox[open] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.image-lightbox::backdrop { background: rgba(3, 20, 29, 0.8); }
+
+.image-lightbox-close {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-out;
+}
+
+.image-lightbox .image-lightbox-close img {
+  width: auto;
+  max-width: calc(100vw - 32px);
+  height: auto;
+  max-height: calc(100dvh - 90px);
+  margin: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.image-lightbox p {
+  flex: 0 0 auto;
+  max-width: 70ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.78rem;
+  text-align: center;
 }
 
 .media-figure figcaption,
@@ -622,6 +706,8 @@
   height: 100%;
   object-fit: cover;
 }
+
+.portrait-frame .image-zoom-trigger { height: 100%; }
 
 .portrait-placeholder {
   display: grid;

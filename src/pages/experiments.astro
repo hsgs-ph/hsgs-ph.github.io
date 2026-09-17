@@ -3,4 +3,27 @@ import Page from '../layouts/Page.astro';
 import { getCollection } from 'astro:content';
 const items = (await getCollection('experiments')).sort((a, b) => a.data.order - b.data.order);
 ---
-<Page title="Thí nghiệm" eyebrow="03 / THIẾT KẾ KIỂM CHỨNG"><div class="card-grid">{items.map((item)=><article class="entry"><span class="eyebrow">{item.data.id} · {item.data.status}</span><h2>{item.data.title}</h2><p>{item.data.summary}</p><a href={`${import.meta.env.BASE_URL}experiments/${item.data.id}/`}>Xem chi tiết thí nghiệm →</a></article>)}</div></Page>
+
+<Page title="Thí nghiệm" eyebrow="03 / THIẾT KẾ KIỂM CHỨNG">
+  <div class="notice experiment-guidance">
+    <strong>NGUYÊN TẮC CHUNG VÀ AN TOÀN</strong>
+    <ul>
+      <li>Ghi nhiệt độ mẫu cùng thời điểm đo và giữ nguyên dữ liệu gốc, kể cả số liệu bất thường.</li>
+      <li>Dùng máy đo pH thương mại đã hiệu chuẩn làm thiết bị tham chiếu; giấy quỳ và chỉ thị màu chỉ dùng để kiểm tra định tính.</li>
+      <li>Bảo quản điện cực trong KCl bão hòa giữa các lần thử và làm sạch theo cùng một quy trình trước khi chuyển mẫu.</li>
+      <li>Giữ cố định các thông số được lựa chọn ở TN3 khi thực hiện TN4.</li>
+      <li>Đeo kính, găng tay và xử lý dung dịch sau thí nghiệm theo hướng dẫn của giáo viên phụ trách.</li>
+    </ul>
+  </div>
+
+  <div class="card-grid">
+    {items.map((item) => (
+      <article class="entry">
+        <span class="eyebrow">{item.data.id} · {item.data.status}</span>
+        <h2>{item.data.title}</h2>
+        <p>{item.data.summary}</p>
+        <a href={`${import.meta.env.BASE_URL}experiments/${item.data.id}/`}>Xem chi tiết thí nghiệm →</a>
+      </article>
+    ))}
+  </div>
+</Page>
