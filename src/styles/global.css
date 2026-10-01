@@ -683,7 +683,7 @@ footer {
 .footer-grid .brand { color: var(--white); }
 
 .footer-grid p,
-.footer-grid span,
+.footer-grid > div > span,
 .footer-grid a:not(.brand) {
   display: block;
   color: #b8ced3;
@@ -702,7 +702,7 @@ footer {
   font-size: 0.76rem;
 }
 
-.footer-grid span,
+.footer-grid > div > span,
 .footer-grid a:not(.brand) { margin: 9px 0; }
 
 .footer-grid a:not(.brand):hover {
