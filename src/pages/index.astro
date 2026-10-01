@@ -5,6 +5,7 @@ import { getCollection } from 'astro:content';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import { isMainJournal } from '../data/mainJournals';
+import { projectStages } from '../data/progress';
 import { homePrototypeImage } from '../data/siteMedia';
 
 const publicEntries = (await getCollection('journal', ({ data }) => !data.draft))
@@ -71,12 +72,12 @@ const path = (href: string) => `${basePrefix}/${href.replace(/^\//, '')}`;
             <a href={path('/about/')}>Xem toàn bộ phương pháp →</a>
           </div>
           <div class="progress-grid">
-            {['Xác định vấn đề', 'Thiết kế nguyên mẫu', 'Hiệu chuẩn cảm biến', 'Kiểm chứng bơm và buồng đo', 'Thử nghiệm dài hạn', 'Hoàn thiện sản phẩm'].map((item, index) => (
-              <div class={`progress-item ${index < 2 ? 'done' : index === 2 ? 'active' : ''}`}>
-                <span class="progress-number">0{index + 1}</span>
+            {projectStages.map((stage) => (
+              <div class={`progress-item ${stage.status}`} aria-label={`${stage.number}. ${stage.title}: ${stage.statusLabel}`}>
+                <span class="progress-number" aria-hidden="true">{stage.number}</span>
                 <div>
-                  <strong>{item}</strong>
-                  <small>{index < 2 ? 'Đã hoàn thành' : index === 2 ? 'Đang thực hiện' : 'Chưa thực hiện'}</small>
+                  <strong>{stage.title}</strong>
+                  <small>{stage.statusLabel}</small>
                 </div>
               </div>
             ))}

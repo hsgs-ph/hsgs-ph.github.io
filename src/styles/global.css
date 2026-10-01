@@ -593,8 +593,8 @@ select:focus-visible {
   font-size: 0.68rem;
 }
 
-.progress-item.done .progress-number,
-.progress-item.done small { color: var(--green-600); }
+.progress-item.completed .progress-number,
+.progress-item.completed small { color: var(--green-600); }
 .progress-item.active .progress-number,
 .progress-item.active small { color: var(--orange-600); }
 

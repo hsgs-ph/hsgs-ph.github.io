@@ -1,4 +1,160 @@
 ---
+import Figure from '../components/Figure.astro';
 import Page from '../layouts/Page.astro';
+
+const base = import.meta.env.BASE_URL;
+const basePrefix = base === '/' ? '' : base.replace(/\/$/, '');
+const path = (href: string) => `${basePrefix}/${href.replace(/^\//, '')}`;
+
+const experimentResults = [
+  {
+    id: 'TN1',
+    title: 'Hiệu chuẩn và đánh giá phép đo pH',
+    metric: '0,004–1,118',
+    metricLabel: 'Độ chênh tuyệt đối ở 4 mẫu kiểm chứng (đơn vị pH)',
+    facts: [
+      ['Phương trình hiệu chuẩn', 'pH = −0,0235585 × ADC + 17,47545'],
+      ['Hai mẫu axit', 'Độ chênh 0,062 và 0,004'],
+      ['Hai mẫu kiềm', 'Độ chênh 1,050 và 1,118'],
+    ],
+    summary: 'Chương trình chuyển đổi ADC sang pH nhất quán với phương trình hiệu chuẩn hai điểm. Kết quả ở vùng kiềm cho thấy cần kiểm chứng lại mẫu tham chiếu và bổ sung hiệu chuẩn trước khi sử dụng trên dải pH rộng.',
+    limit: 'Giá trị 9,18 là giá trị ghi nhãn; chưa có phép xác nhận độc lập tại thời điểm đo. Các độ chênh quan sát được không đại diện cho độ chính xác của hệ thống trên toàn dải pH.',
+    image: {
+      src: path('/images/journal/TN1/th_1.png'),
+      alt: 'Đường hiệu chuẩn hai điểm giữa ADC và pH trong TN1',
+      caption: 'TN1 · Đường hiệu chuẩn hai điểm và độ chênh tại dung dịch ghi nhãn pH 9,18.',
+    },
+  },
+  {
+    id: 'TN2',
+    title: 'Ảnh hưởng của bơm, đường ống và buồng đo',
+    metric: '0,099',
+    metricLabel: 'Chênh lệch tuyệt đối trung bình của 15 cặp đo (đơn vị pH)',
+    facts: [
+      ['Mẫu A', 'Trung bình 0,096 · lớn nhất 0,24'],
+      ['Mẫu B', 'Trung bình 0,134 · lớn nhất 0,32'],
+      ['Mẫu C', 'Trung bình 0,068 · lớn nhất 0,21'],
+    ],
+    summary: 'Giá trị trong buồng nhìn chung gần mẫu nguồn, nhưng 3 trong 15 cặp đo có chênh lệch lớn hơn 0,20. Quy trình xả, nạp, kiểm soát bọt khí và phép đo tham chiếu vẫn cần được kiểm tra thêm.',
+    limit: 'Thiết kế hiện tại đánh giá tổng hợp bơm, đường ống, buồng đo và độ lặp lại của phép đối chiếu; chưa thể quy chênh lệch cho riêng một bộ phận hay xác định số lần nạp/xả tối ưu.',
+    image: {
+      src: path('/images/journal/TN2/th_2.png'),
+      alt: 'Tương quan giữa pH mẫu nguồn và pH mẫu trong buồng ở TN2',
+      caption: 'TN2 · Tương quan giữa pH mẫu nguồn và pH mẫu trong buồng.',
+    },
+  },
+  {
+    id: 'TN3',
+    title: 'Xác định thông số vận hành của một chu trình đo',
+    metric: '20 giây',
+    metricLabel: 'Thời gian chờ được chọn trong điều kiện khảo sát',
+    facts: [
+      ['pH trung bình tại 20 giây', '6,847'],
+      ['Độ lệch so với 6,86', '0,013 đơn vị pH'],
+      ['Vùng gần ổn định quan sát được', '20–60 giây'],
+    ],
+    summary: 'Trong dung dịch pH 6,86 ở 27 °C, 20 giây là mốc sớm nhất có giá trị trung bình gần tham chiếu và nằm trong vùng gần ổn định quan sát được. Đây là thời gian chờ được chọn cho cấu hình hiện tại.',
+    limit: 'Kết quả chưa kiểm chứng cho các mẫu, nhiệt độ hay trạng thái điện cực khác. Dữ liệu hiện có cũng chưa đủ để lựa chọn độc lập số lần thu nhận hoặc thời gian để ráo.',
+    image: {
+      src: path('/images/journal/TN3/th_3.jpg'),
+      alt: 'Sự thay đổi pH theo thời gian chờ trong TN3',
+      caption: 'TN3 · Sự thay đổi của pH theo thời gian chờ trước khi đo.',
+    },
+  },
+  {
+    id: 'TN4',
+    title: 'Đánh giá vận hành định kỳ và độ tin cậy',
+    metric: '20/20',
+    metricLabel: 'Chu trình theo lịch có dữ liệu và trạng thái DONE',
+    facts: [
+      ['Khoảng thời gian', 'Gần 10 giờ ngày 19/09/2026'],
+      ['Bản ghi có dữ liệu', '20/20 (100%)'],
+      ['Dấu hiệu lỗi nRF24L01', 'Không ghi nhận trong đoạn dữ liệu'],
+    ],
+    summary: 'Nguyên mẫu duy trì được chuỗi vận hành và đường lưu dữ liệu trong 20 chu trình theo lịch đã chọn. Kết quả xác nhận tính liên tục trong phạm vi đoạn dữ liệu này.',
+    limit: 'Hiệu chuẩn tại thời điểm thu nhận có dấu hiệu trôi và không có phép đo tham chiếu đồng thời. Các giá trị pH hiển thị không được dùng để khẳng định pH thực, độ chính xác hay độ tin cậy dài hạn.',
+    image: {
+      src: path('/images/journal/TN4/th_4.png'),
+      alt: 'Giá trị pH hệ thống hiển thị trong 20 chu trình của TN4',
+      caption: 'TN4 · Giá trị pH hệ thống hiển thị trong 20 chu trình theo lịch.',
+    },
+  },
+] as const;
 ---
-<Page title="Kết quả" eyebrow="05 / TỔNG HỢP DỮ LIỆU"><div class="notice"><strong>CHƯA CÓ DỮ LIỆU KẾT LUẬN</strong><p>Biểu đồ dưới đây là khung minh họa giao diện, không phải kết quả nghiên cứu. Chỉ thay bằng CSV/JSON đã kiểm tra và có đơn vị rõ ràng.</p></div><div class="result-grid"><div class="metric"><b>--</b><span>Sai số trung bình</span></div><div class="metric"><b>--</b><span>Độ lặp lại</span></div><div class="metric"><b>--</b><span>Tỉ lệ chu trình thành công</span></div></div><div class="chart"><span>pH hệ thống so với pH tham chiếu</span><div class="chart-line"></div><small>Biểu đồ minh họa · cần thay thế</small></div><article class="content-grid"><div><h2>Kết luận chính</h2><p>CẦN CẬP NHẬT sau khi hoàn tất thí nghiệm và kiểm tra dữ liệu.</p></div><div><h2>Hướng cải tiến</h2><p>Tiếp tục đánh giá độ trôi điện cực, thể tích tráng và thời gian một chu trình.</p></div></article></Page>
+
+<Page
+  title="Kết quả"
+  eyebrow="05 / TỔNG HỢP DỮ LIỆU"
+  description="Tổng hợp kết quả và giới hạn diễn giải từ bốn thí nghiệm của hệ thống tự động đo pH."
+>
+  <p class="page-intro">Tổng hợp các kết quả đã ghi nhận trong TN1–TN4, từ hiệu chuẩn đầu đo đến vận hành chuỗi tự động.</p>
+
+  <div class="notice results-notice">
+    <strong>PHẠM VI DIỄN GIẢI</strong>
+    <p>Các chỉ số dưới đây chỉ áp dụng cho đúng mẫu, thiết bị và điều kiện đã khảo sát. Kết quả của từng thí nghiệm được trình bày cùng giới hạn để không mở rộng kết luận vượt quá dữ liệu hiện có.</p>
+  </div>
+
+  <section class="results-overview" aria-labelledby="results-overview-title">
+    <h2 id="results-overview-title">Các kết quả chính</h2>
+    <div class="result-grid result-overview-grid">
+      {experimentResults.map((result) => (
+        <a class="metric result-metric" href={`#${result.id.toLowerCase()}`}>
+          <small>{result.id}</small>
+          <b>{result.metric}</b>
+          <span>{result.metricLabel}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="results-detail" aria-labelledby="results-detail-title">
+    <h2 id="results-detail-title">Kết quả theo từng thí nghiệm</h2>
+    <div class="results-list">
+      {experimentResults.map((result) => (
+        <article class="result-card" id={result.id.toLowerCase()}>
+          <header class="result-card-header">
+            <div>
+              <p class="eyebrow">{result.id} · ĐÃ HOÀN THÀNH</p>
+              <h3>{result.title}</h3>
+            </div>
+            <a class="text-link" href={path(`/experiments/${result.id}/`)}>Xem đầy đủ {result.id} →</a>
+          </header>
+          <div class="result-card-layout">
+            <div class="result-card-copy">
+              <p class="result-summary">{result.summary}</p>
+              <dl class="result-facts">
+                {result.facts.map(([label, value]) => (
+                  <div>
+                    <dt>{label}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <div class="result-limit">
+                <strong>Giới hạn diễn giải</strong>
+                <p>{result.limit}</p>
+              </div>
+            </div>
+            <Figure {...result.image} />
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="content-grid results-conclusion" aria-label="Kết luận và hướng tiếp theo">
+    <article>
+      <h2>Kết luận tổng hợp</h2>
+      <p>Bốn thí nghiệm cho thấy nguyên mẫu thực hiện được chuỗi thu nhận và lưu dữ liệu, mẫu trong buồng nhìn chung gần mẫu nguồn, và thời gian chờ 20 giây phù hợp với điều kiện TN3. Đồng thời, chênh lệch ở vùng kiềm và độ trôi hiệu chuẩn trong TN4 cho thấy hệ đo chưa đủ cơ sở để khẳng định độ chính xác trên toàn dải pH hoặc độ tin cậy dài hạn.</p>
+    </article>
+    <aside>
+      <h2>Ưu tiên cải tiến</h2>
+      <ul>
+        <li>Kiểm chứng và mở rộng hiệu chuẩn ở vùng kiềm.</li>
+        <li>Kiểm soát quy trình xả, nạp và bọt khí.</li>
+        <li>Bổ sung đo tham chiếu đồng thời cho chuỗi dài hạn.</li>
+        <li>Tiếp tục theo dõi lỗi theo từng công đoạn.</li>
+      </ul>
+    </aside>
+  </section>
+</Page>
