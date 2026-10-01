@@ -21,7 +21,7 @@ export const prototypeVideo = {
 
 export const libraryVideos = [
   { youtubeUrl: 'https://youtu.be/mOs3y8B0luo', title: 'Xác thực những điều đã được học', caption: 'pH đặc trưng cho nồng độ ion [H+] trong dung dịch' },
-  { youtubeUrl: '', title: 'Chế tạo nguyên mẫu', caption: '' },
+  { youtubeUrl: 'https://youtu.be/CoffPCmxfNA', title: 'Chế tạo nguyên mẫu', caption: 'Hoàn thành nguyên mẫu hệ thống' },
   { youtubeUrl: 'https://youtu.be/d10D2-FmUkc', title: 'Hiệu chuẩn cảm biến', caption: 'Sử dụng các mẫu tiêu chuẩn 4 ; 6,86 và 9,18' },
   { youtubeUrl: 'https://youtu.be/t-VUYzsYKag', title: 'Chuẩn bị các mẫu đo', caption: 'Pha loãng nhiều nồng độ hóa chất khác nhau để có đa dạng độ pH' },
   { youtubeUrl: 'https://youtu.be/yJRBGig1Fa0', title: 'Thử nghiệm dài hạn', caption: 'Thử nghiệm hệ thống dài hạn trong môi trường kiểm soát' },

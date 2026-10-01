@@ -1,61 +1,80 @@
 ---
 title: "Xây dựng chương trình điều khiển và giao diện"
 researchDate: 2026-09-15
-publishedDate: 2026-09-15
+publishedDate: 2026-09-30
 authors:
   - "Lê Quang Minh"
   - "Vũ Tuệ Phương"
 summary: "Xây dựng chương trình điều khiển chu trình đo, giao tiếp giữa các khối và giao diện theo dõi hệ thống."
 activityTypes:
   - "lap-trinh"
-status: "planned"
+status: "completed"
 experimentIds: []
 systemVersion: "v0.3"
 tags:
   - "chương trình điều khiển"
   - "giao diện"
   - "Raspberry Pi"
-images: []
+images:
+- src: "/images/journal/2026-09-30/thuat_toan.jpg"
+  alt: "Tìm hiểu"
+  caption: "Thuật toán tương tác giữa 2 thiết bị trong hệ thống"
+- src: "/images/journal/2026-09-30/trang_chinh.jpg"
+  alt: "Tìm hiểu"
+  caption: "Trang chính thao tác đo"
+- src: "/images/journal/2026-09-30/lich_do.jpg"
+  alt: "Tìm hiểu"
+  caption: "Đặt lịch đo tự động"
+- src: "/images/journal/2026-09-30/thu_cong.jpg"
+  alt: "Tìm hiểu"
+  caption: "Các thao tác điều khiển đo thủ công"
+- src: "/images/journal/2026-09-30/hieu_chuan.jpg"
+  alt: "Tìm hiểu"
+  caption: "Hiệu chuẩn cảm biến theo dung dịch chuẩn"
+- src: "/images/journal/2026-09-30/du_lieu.jpg"
+  alt: "Tìm hiểu"
+  caption: "Lưu trữ dữ liệu dài hạn"
+
 youtubeVideos: []
 dataFiles: []
-draft: true
+draft: false
 ---
 
-> **BÀI ĐANG CHỜ CẬP NHẬT.** Hãy thay phần hướng dẫn bằng ghi chép thực tế. Không điền số liệu hoặc kết quả giả định.
+> **ĐÃ CẬP NHẬT XONG CÁC CHỨC NĂNG CẦN THIẾT, CÓ SỰ HỖ TRỢ CỦA PHỤ HUYNH**.
 
 ## Mục tiêu
 
-- [CẦN CẬP NHẬT] Nêu chức năng điều khiển cần hoàn thành.
-- [CẦN CẬP NHẬT] Nêu thông tin cần hiển thị và thao tác của người dùng.
+- Xây dựng phần giao diện trên Raspberry Pi
+- Tương tác với cánh tay robot, đọc ADC từ điện cực trong dung dịch và chuyển thành pH.
 
-## Chương trình điều khiển
+## Chương trình trên Raspberry Pi
 
-- [CẦN CẬP NHẬT] Mô tả các trạng thái của một chu trình đo.
-- [CẦN CẬP NHẬT] Điều kiện chuyển trạng thái, giới hạn thời gian và xử lý lỗi.
-- [CẦN CẬP NHẬT] Giao tiếp giữa bộ điều khiển và Raspberry Pi.
+- Tạo mã cho giao diện điều khiển từ AI agent (codex).
+- Promt "Tạo chương trình sử dụng thư viện đồ họa, trên màn hình touch screen, có các chức năng đo, hiệu chỉnh, thống kê số liệu, kết nối với Dropbox để đo pH từ xa, giao tiếp qua module nRF24l01. Gợi ý cách kết nối nRF24l01 với rasberry pi"
+- Fix dần các lỗi khi tương tác.
 
-## Giao diện theo dõi
+## Chương trình trên bảng mạch phát triển đo pH
 
-- [CẦN CẬP NHẬT] Bố cục giao diện và thông tin được hiển thị.
-- [CẦN CẬP NHẬT] Cách thay đổi cấu hình và kiểm tra dữ liệu nhập.
-- [CẦN CẬP NHẬT] Cách hiển thị trạng thái lỗi hoặc mất kết nối.
+- Tạo mã cho chương trình điều khiển cánh tay robot, đo cảm biến pH từ AI agent (codex).
+- Promt: Tạo chương trình viết cho Atmega128, sử dụng trình biên dịch codevision, với các kết nối ngoại vi như sơ đồ đính kèm, các công tắc tiệm cận, động cơ hoạt động theo kịch bản cho trước, khi nhận yêu cầu từ Rasberry Pi thì tự động thao tác.
+- Fix dần các lỗi khi tương tác, phát triển các kịch bản đo tối ưu.
 
-## Kiểm tra phần mềm
+## Cập nhật các phiên bản
 
-- [CẦN CẬP NHẬT] Các tình huống đã kiểm tra.
-- [CẦN CẬP NHẬT] Kết quả quan sát, lỗi và phiên bản mã nguồn liên quan.
+- Giao diện cơ bản
+- Cập nhật thêm chức năng đo tự động, đặt lịch
+- Cập nhật thêm chức năng nâng, hạ cảm biến thủ công
+- Cập nhật chức năng ổn định cảm biến trước khi đo
 
 ## Liên hệ với các thí nghiệm
 
-[CẦN CẬP NHẬT] Nêu các tham số phần mềm sẽ được TN1–TN4 sử dụng hoặc kiểm chứng.
+Thí nghiệm 1 [TN1] liên quan trực tiếp.
 
 ## Minh chứng
 
-- [ ] Ảnh chụp giao diện.
-- [ ] Sơ đồ trạng thái hoặc lưu đồ chương trình.
-- [ ] Video thao tác, nếu có.
-- [ ] Tên phiên bản hoặc commit mã nguồn.
+- [ ] Ảnh chụp các giao diện.
+- [ ] Sơ đồ thuật toán chương trình.
 
 ## Công việc tiếp theo
 
-[CẦN CẬP NHẬT] Ghi công việc cụ thể sẽ thực hiện ở nhật ký tiếp theo.
+Ghi công việc cụ thể sẽ thực hiện ở nhật ký tiếp theo.

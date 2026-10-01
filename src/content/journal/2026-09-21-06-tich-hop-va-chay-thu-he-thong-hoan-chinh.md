@@ -10,7 +10,7 @@ activityTypes:
   - "che-tao"
   - "lap-trinh"
   - "sua-loi"
-status: "planned"
+status: "completed"
 experimentIds:
   - "TN1"
   - "TN2"
@@ -21,34 +21,47 @@ tags:
   - "tích hợp"
   - "chạy thử"
   - "hệ thống hoàn chỉnh"
-images: []
+images:
+ - src: "/images/journal/2026-09-21/test_thuong_mai.jpg"
+   alt: "Tìm hiểu"
+   caption: "Chuẩn bị các thiết bị tin cậy để hiệu chuẩn"
+ - src: "/images/journal/2026-09-21/kiem_tra_ph.jpg"
+   alt: "Tìm hiểu"
+   caption: "Kiểm tra dung dịch bằng thiết bị"
+ - src: "/images/journal/2026-09-21/do_quy.jpg"
+   alt: "Tìm hiểu"
+   caption: "Xác định định tính bằng chất chỉ thị màu"
+ - src: "/images/journal/2026-09-21/do_be_ca.jpg"
+   alt: "Tìm hiểu"
+   caption: "Chạy thử nghiệm trong thời gian dài"
 youtubeVideos: []
 dataFiles: []
-draft: true
+draft: false
 ---
 
-> **BÀI ĐANG CHỜ CẬP NHẬT.** Hãy thay phần hướng dẫn bằng ghi chép thực tế. Không điền số liệu hoặc kết quả giả định.
+> **TÍCH HỢP HỆ THỐNG VÀ CHẠY THỬ TRONG THỜI GIAN DÀI**
 
 ## Mục tiêu
 
-- [CẦN CẬP NHẬT] Nêu phạm vi tích hợp và tiêu chí của lần chạy thử.
-- [CẦN CẬP NHẬT] Nêu cấu hình phần cứng, phần mềm được sử dụng.
+- Lắp ráp phiên bản có thể chạy hoàn chỉnh.
+- Lên kế hoạch chạy hệ thống trong thời gian dài.
 
 ## Chuẩn bị
 
-- [CẦN CẬP NHẬT] Kiểm tra cơ khí, điện, dung dịch và vị trí ban đầu.
-- [CẦN CẬP NHẬT] Ghi rõ mọi thao tác thủ công cần thiết.
+- Thực hiện lại chuẩn hóa cảm biến
+- Đo mẫu chuẩn, các mẫu được kiểm chứng từ thiêt bị tin cậy
+- Chạy thử nghiệm lâu dài ở môi trường nuôi cá cảnh trong phòng thí nghiệm
 
 ## Quy trình chạy thử
 
-- [CẦN CẬP NHẬT] Mô tả lần lượt các bước của chu trình thực tế.
-- [CẦN CẬP NHẬT] Điều kiện chuyển trạng thái và cách ghi dữ liệu.
+- Thực hiện một quy trình đầy đủ của hệ thống với các dung dịch đối sánh.
+- Khởi động dao diện, thực hiện đưa khỏi buồng dưỡng, bơm dung dịch, đo, đưa về buồng dưỡng.
 
 ## Kết quả và quan sát
 
-- [CẦN CẬP NHẬT] Ghi những bước đã chạy được và bước chưa chạy được.
-- [CẦN CẬP NHẬT] Ghi lỗi, hiện tượng bất thường và cách xử lý.
-- [CẦN CẬP NHẬT] Không coi một lần chạy thử là kết quả của thí nghiệm.
+- Một vài trường hợp tín hiệu bị trễ.
+- Khi sử dụng các dung dịch có pH thay đổi nhiều (từ ~10 về ~1), không có phương án rửa buồng đo sẽ ảnh hưởng kết quả đáng kể. Tuy nhiên thực tế rất khó xảy ra trường hợp này ngoài thực tế.
+- Khi chạy một thời gian dài trong bể cá cảnh, tần suất đo 30 phút 1 lần, trong 2 ngày liên tục, kết quả dao động không đáng kể.
 
 ## Liên hệ với bốn thí nghiệm
 
@@ -56,15 +69,13 @@ draft: true
 - TN2: ảnh hưởng của bơm và buồng đo.
 - TN3: tối ưu chu trình đo và bảo quản điện cực.
 - TN4: chu kỳ đo và độ tin cậy hệ thống.
-- [CẦN CẬP NHẬT] Nêu điều kiện sẵn sàng trước khi thực hiện từng thí nghiệm.
 
 ## Minh chứng
 
 - [ ] Ảnh hệ thống đã tích hợp.
 - [ ] Video một chu trình hoàn chỉnh.
-- [ ] Nhật ký trạng thái hoặc tệp dữ liệu chạy thử.
 - [ ] Danh sách lỗi và điều chỉnh.
 
 ## Công việc tiếp theo
 
-[CẦN CẬP NHẬT] Ghi kế hoạch thực hiện TN1–TN4.
+Thực hiện TN1–TN4.

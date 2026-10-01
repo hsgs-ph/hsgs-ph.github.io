@@ -15,8 +15,14 @@ export async function getStaticPaths() {
 const { experiment } = Astro.props;
 const { Content, headings } = await render(experiment);
 const experiments = (await getCollection('experiments')).sort((a, b) => a.data.order - b.data.order);
-const related = (await getCollection('journal', ({ data }) => data.experimentIds.includes(experiment.data.id)))
-  .sort((a, b) => b.data.researchDate.valueOf() - a.data.researchDate.valueOf());
+const normalizedExperimentId = experiment.data.id.toLowerCase();
+const related = (await getCollection('journal', ({ data }) =>
+  !data.draft
+  && data.status === 'completed'
+  && data.experimentIds.some((experimentId) => experimentId.toLowerCase() === normalizedExperimentId)
+))
+  .sort((a, b) => b.data.researchDate.valueOf() - a.data.researchDate.valueOf())
+  .slice(0, 3);
 const directoryItems = experiments.map((item) => ({
   id: item.data.id,
   title: item.data.title,

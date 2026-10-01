@@ -26,6 +26,7 @@ const videos = [
   ...post.data.youtubeIds.map((id) => ({ id, title: `Video nghiên cứu — ${post.data.title}` })),
 ];
 const githubBase = import.meta.env.PUBLIC_GITHUB_REPO_URL || 'https://github.com/hsgs-ph/hsgs-ph.github.io';
+const hideAuxiliaryLinks = post.id === '2026-09-21-06-tich-hop-va-chay-thu-he-thong-hoan-chinh';
 const directoryItems = entries.map((entry) => ({
   id: entry.id,
   title: entry.data.title,
@@ -57,8 +58,8 @@ const directoryItems = entries.map((entry) => ({
           Thí nghiệm {experiment.data.id}: {experiment.data.title} →
         </a>
       ))}
-      {post.data.systemVersion && <a href={`${import.meta.env.BASE_URL}system/`}>Phiên bản {post.data.systemVersion} →</a>}
-      {githubBase && <a href={`${githubBase}/commits/main/src/content/journal/${post.id}.md`}>Xem lịch sử tệp trên GitHub ↗</a>}
+      {!hideAuxiliaryLinks && post.data.systemVersion && <a href={`${import.meta.env.BASE_URL}system/`}>Phiên bản {post.data.systemVersion} →</a>}
+      {!hideAuxiliaryLinks && githubBase && <a href={`${githubBase}/commits/main/src/content/journal/${post.id}.md`}>Xem lịch sử tệp trên GitHub ↗</a>}
     </div>
     <div class="prose"><Content /></div>
     {post.data.images.length > 0 && (
